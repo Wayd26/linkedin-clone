@@ -27,20 +27,27 @@ function Feed() {
             timestamp: firebase.firestore.FieldValue.serverTimestamp(),
         })
         setInputValue('')
+        fetchPosts();
+    }
+
+    const fetchPosts = () => {
+        db.collection("posts").onSnapshot(snapshot => {
+            setPosts(
+                snapshot.docs.map(doc => (
+                {
+                    id: doc.id,
+                    data: doc.data()
+                }
+            )).reverse()
+            )
+        })
     }
 
     // Effects
 
     useEffect(() => {
+        fetchPosts()
         
-        db.collection("posts").onSnapshot(snapshot => {
-            setPosts(snapshot.docs.map(doc => (
-                {
-                    id: doc.id,
-                    data: doc.data()
-                }
-            )))
-        })
     }, [])
 
 

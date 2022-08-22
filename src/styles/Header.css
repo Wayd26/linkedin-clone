@@ -4,6 +4,7 @@
     z-index: 999;
     display: flex;
     justify-content: space-evenly;
+    background-color: white;
     border-bottom: 0.1px solid lightgray;
     padding-top: 10px;
     padding-bottom: 10px;
